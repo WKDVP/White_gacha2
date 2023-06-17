@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Made in Abyss Gacha
+        </title>
+        <style>
+            @font-face {
+                font-family: 'Cafe24Ssurround';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;     
+            }
+
+            #gacha-con {
+                display: none;
+            }
+
+            #gacha-con img{
+                width: 870px;
+            }
+
+            #wait-con {
+                display: block;
+            }
+            body {
+                background-color: #C3E5F7;
+                font-family: "Cafe24Ssurround";
+            }
+            
+        </style>        
+    </head>
+    
+
+    <body>
+        <div id="gacha-con", style="position: relative;">
+            <img src="fastNoFall3.gif" id="bdrd">
+        </div>
+
+        <div id="icon0" style="position: absolute; top: 100px; left: 10px;">
+            <img src="MUSTCHANG.png"  id="gc1" style="width: 170px;">
+        </div>
+
+        <div id="icon1" style="position: absolute; top: 100px; left: 185px;">
+            <img src="MUSTCHANG.png" id="gc2" style="width: 170px;">
+        </div>
+
+        <div id="icon2" style="position: absolute; top: 100px; left: 360px;">
+            <img src="MUSTCHANG.png" id="gc3" style="width: 170px;">
+        </div>
+
+        <div id="icon3" style="position: absolute; top: 100px; left: 535px;">
+            <img src="MUSTCHANG.png" id="gc4" style="width: 170px;">
+        </div>
+
+        <div id="icon4" style="position: absolute; top: 100px; left: 710px;">
+            <img src="MUSTCHANG.png" id="gc5" style="width: 170px;">
+        </div>
+
+        <div id="icon5" style="position: absolute; top: 290px; left: 10px;">
+            <img src="MUSTCHANG.png" id="gc6" style="width: 170px;">
+        </div>
+
+        <div id="icon6" style="position: absolute; top: 290px; left: 185px;">
+            <img src="MUSTCHANG.png" id="gc7" style="width: 170px;">
+        </div>
+
+        <div id="icon7" style="position: absolute; top: 290px; left: 360px;">
+            <img src="MUSTCHANG.png" id="gc8" style="width: 170px;">
+        </div>
+
+        <div id="icon8" style="position: absolute; top: 290px; left: 535px;">
+            <img src="MUSTCHANG.png" id="gc9" style="width: 170px;">
+        </div>
+
+        <div id="icon9" style="position: absolute; top: 290px; left: 710px;">
+            <img src="MUSTCHANG.png" id="gc10" style="width: 170px;">
+        </div>
+
+        <div id="wait-con">
+            <img src="waiting.png" width="870px" id="wait">
+        </div>
+
+        <link rel="stylesheet" href="button.css">
+        <div>
+            <p style="color: #EDAF00; font-size: 2em; text-shadow: -2px 0 #FFFFFF, 0 2px white, 2px 0 #FFFFFF, 0 -2px #FFFFFF;">
+                10회 뽑기는 SR 1개 확정!
+            </p>
+        </div>
+        <div style="position: relative; top: -19px;">
+            <p style="color:#6D3A07;  font-size: 1.3em; text-shadow: -2px 0 #FFFFFF, 0 2px white, 2px 0 #FFFFFF, 0 -2px #FFFFFF;">
+                진짜 뽑기는 언젠가 추가됩니다!
+            </p>
+        </div>    
+        <div style="position: relative; top: -20px">
+            <button id="oneButton"onclick="ilbbop()">1회 뽑기</button>
+            <button id="tenButton" onclick="shipbbop()">10회 뽑기</button>
+        </div>    
+            <button id="return" style="display: none;" onclick="window.location.reload()">돌아가기</button>
+
+        <script>
+            
+            function shipbbop(){
+                var TB = document.getElementById("tenButton");
+                var OB = document.getElementById("oneButton"); 
+                TB.style.display = "none";
+                OB.style.display = "none";
+                var waitCon = document.getElementById("wait-con");
+                waitCon.style.display = "none";
+
+                var imageCondom = document.getElementById("gacha-con");
+                imageCondom.style.display = "block";
+                setTimeout(changeImageTen, 3000); //3000으로 바꾸자!!!!!!
+
+                
+            }
+            function changeImageTen() {
+                var image = document.getElementById("bdrd");
+                image.src = "gachaBG.jpg";
+                Tengacha();
+            }
+            async function Tengacha(){    
+                var GC1 = document.getElementById("gc1");
+                var GC2 = document.getElementById("gc2");
+                var GC3 = document.getElementById("gc3");
+                var GC4 = document.getElementById("gc4");
+                var GC5 = document.getElementById("gc5");
+                var GC6 = document.getElementById("gc6");
+                var GC7 = document.getElementById("gc7");
+                var GC8 = document.getElementById("gc8");
+                var GC9 = document.getElementById("gc9");
+                var GC10 = document.getElementById("gc10");
+                var gcArr = [GC1, GC2, GC3, GC4, GC5, GC6, GC7, GC8, GC9, GC10];
+                
+                
+                var gachaArr = [];
+                for (var i = 0; i < 10; i++){
+                    var randNum = Math.floor(Math.random() * 99);
+                    if (randNum < 2){       //2%
+                        gachaArr[i] = "SSR";
+                    }
+                    else if (randNum < 20) { //19%
+                        gachaArr[i] = "SR";
+                    }
+                    else { 
+                        gachaArr[i] = "R";
+                    }
+                }
+                gachaArr[9] = "SR";            
+                for (var k = 0; k < 10; k++) {
+                    var temp = gcArr[k];
+                    await sleep(380);
+                    if (gachaArr[k] == "R"){
+                        temp.src = "R.png";
+                    }
+                    else if (gachaArr[k] == "SR"){
+                        
+                        temp.src = "SR.png";
+                    }
+                    else{
+                        
+                        temp.src = "SSR.png";
+                    }
+                    
+                }
+                var botan = document.getElementById("return");
+                botan.style.display="block"; 
+            }
+/*
+==========================================================================================================
+*/
+            function ilbbop(){
+                var TB = document.getElementById("tenButton");
+                var OB = document.getElementById("oneButton");
+                TB.style.display = "none";
+                OB.style.display = "none";
+                var waitCon = document.getElementById("wait-con");
+                waitCon.style.display = "none";
+
+                var imageCondom = document.getElementById("gacha-con");
+                imageCondom.style.display = "block";
+                setTimeout(changeImageOne, 3000); //3000으로 바꾸자!!!!!!
+
+            }
+            function changeImageOne() {
+                var image = document.getElementById("bdrd");
+                image.src = "gachaBG.jpg";
+                Onegacha();
+            }
+
+            async function Onegacha(a){
+                var GC1 = document.getElementById("gc1");
+                var randNum = Math.floor(Math.random() * 99);
+                if (randNum < 2){       //2%
+                    gachaArr = "SSR";
+                }
+                else if (randNum < 20) { //19%
+                    gachaArr = "SR";
+                }
+                else {
+                    gachaArr = "R";
+                }
+            console.log(gachaArr);
+            await sleep(280);
+                if (gachaArr == "R"){
+                    GC1.src = "R.png";
+                }
+                else if (gachaArr == "SR"){                    
+                    GC1.src = "SR.png";
+                }
+                else{                    
+                    GC1.src = "SSR.png";
+            }
+            var botan = document.getElementById("return");
+                botan.style.display="block";            
+        }    
+
+            function sleep(ms){
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            </script>
+    </body>
+</html>
